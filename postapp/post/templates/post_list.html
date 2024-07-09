@@ -5,19 +5,21 @@ PostApp
 {% endblock %}
 
 {% block content %}
-<h1 class='text-center mt-4'>This is PostApp</h1>
-<a class='btn btn-primary mb-3'href="{% url 'post_create' %}">Create a Post</a>
+<h1 class='text-center mt-4'>PostApp Feed</h1>
+<a class='btn btn-warning mb-4'href="{% url 'post_create' %}">Create a Post</a>
 <div class="container row gap-3">
   {% for post in posts %}
   <div class="card" style="width: 18rem;">
     <img src="{{post.photo.url}}" class="card-img-top" alt="...">
-    <div class="card-body">
+    <div class="card-body ">
       <h5 class="card-title">{{post.user.username}}</h5>
       <p class="card-text">{{post.text}}</p>
-      {% if post.user == user %}
-      <a href="{% url 'post_edit' post.id %}" class="btn btn-primary">Edit</a>
+      <div class="d-flex justify-content-between">
+        {% if post.user == user %}
+      <a href="{% url 'post_edit' post.id %}" class="btn btn-secondary">Edit</a>
       <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Delete</a>
       {% endif %}
+      </div> 
     </div>
   </div>
   {% endfor %}
