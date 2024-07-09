@@ -11,7 +11,7 @@ def post_list(request):
   posts = Post.objects.all().order_by('created_at')
   return render(request, 'post_list.html' , {'posts': posts})  
 
-def post_form(request):
+def post_create(request):
   if request.method == 'POST':
     form = PostForm(request.POST, request.FILES)
     if form.is_valid():
