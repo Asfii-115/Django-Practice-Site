@@ -7,4 +7,5 @@ urlpatterns = [
     path('<int:post_id>/delete/', views.post_delete, name='post_delete'),
     path('create/', views.post_create, name='post_create'),
     path('register/', views.register, name='register'),
+    path('profile/', views.profile, name='profile'),
 ]
