@@ -12,4 +12,18 @@ class Post(models.Model):
   def __str__(self):
     return f"{self.user.username} - {self.text[:10]}"
 
+class Profile(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  profile_photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)
+  first_name = models.CharField(max_length=70)    
+  last_name = models.CharField(max_length=70)   
+  email = models.EmailField(unique=True)
+  address = models.CharField(max_length=100)
+  phone = models.IntegerField(max_length=12)
+
+  def __str__(self):
+    return self.user.username
+
+
+
 
