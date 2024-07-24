@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Post, Profile
-from .forms import PostForm, UserRegistrationForm, ProfileForm
+from .models import Post
+from .forms import PostForm, UserRegistrationForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
@@ -67,15 +67,6 @@ def register(request):
     form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})
 
-def profile(request):
-  if request.method == 'POST':
-    form = ProfileForm(request.POST, request.FILES)
-    if form.is_valid():
-      profile = form.save(commit=False)
-      profile.save()
-      return redirect('profile')
-  else:
-    form = ProfileForm()
-  return render(request, 'profile.html', {'form':form})     
+   
 
 
