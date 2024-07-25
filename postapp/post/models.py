@@ -12,6 +12,16 @@ class Post(models.Model):
   def __str__(self):
     return f"{self.user.username} - {self.text[:10]}"
 
+class Profile(models.Model):
+  name = models.CharField(max_length=125)
+  surname = models.CharField(max_length=125)
+  bio =  models.TextField(max_length=250)
+  phone =  models.CharField(max_length=125)
+  user = models.OneToOneField(User, on_delete=models.CASCADE)    
+
+  def __str__(self):
+    return self.user.username
+
 
 
 
