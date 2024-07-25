@@ -24,6 +24,9 @@
               <p><strong>Bio:</strong> {{ profile.bio }}</p>
               <p><strong>Phone:</strong> {{ profile.phone }}</p>
             </div>
+            <a href="{% url 'profile_view' %}" class="btn btn-success mx-2"
+              >Profile</a
+            >
           </div>
 
           <div class="card mt-4">
