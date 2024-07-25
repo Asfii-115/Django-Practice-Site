@@ -1,78 +1,60 @@
 {% extends "layout.html" %} {% block content %}
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile</title>
-    <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div class="card">
-            <div class="card-header">
-              <h4>User Profile</h4>
-            </div>
-            <div class="card-body">
-              <p><strong>UserName:</strong> {{ user.username }}</p>
-              <p><strong>Email:</strong> {{ user.email }}</p>
-              <p><strong>Name:</strong> {{ profile.name }}</p>
-              <p><strong>Surname:</strong> {{ profile.surname }}</p>
-              <p><strong>Bio:</strong> {{ profile.bio }}</p>
-              <p><strong>Phone:</strong> {{ profile.phone }}</p>
-            </div>
-            <a href="{% url 'profile_form' %}" class="btn btn-success mx-2"
-              >Edit Profile</a
-            >
-          </div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header">
+          <h4>User Profile</h4>
+        </div>
+        <div class="card-body">
+          <p><strong>UserName:</strong> {{ user.username }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Name:</strong> {{ profile.name }}</p>
+          <p><strong>Surname:</strong> {{ profile.surname }}</p>
+          <p><strong>Bio:</strong> {{ profile.bio }}</p>
+          <p><strong>Phone:</strong> {{ profile.phone }}</p>
+        </div>
+        <a href="{% url 'profile_form' %}" class="btn btn-success mx-2"
+          >Edit Profile</a
+        >
+      </div>
 
-          <div class="card mt-4">
-            <div class="card-header">
-              <h4>Your Posts</h4>
-            </div>
-            <div class="card-body">
-              <ul class="list-group">
-                <div class="container row gap-3">
-                  {% for post in posts %}
-                  <div class="card" style="width: 18rem">
-                    <img
-                      src="{{post.photo.url}}"
-                      class="card-img-top"
-                      alt="..."
-                    />
-                    <div class="card-body">
-                      <h5 class="card-title">{{post.user.username}}</h5>
-                      <p class="card-text">{{post.text}}</p>
-                      <div class="d-flex justify-content-between">
-                        {% if post.user == user %}
-                        <a
-                          href="{% url 'post_edit' post.id %}"
-                          class="btn btn-secondary"
-                          >Edit</a
-                        >
-                        <a
-                          href="{% url 'post_delete' post.id %}"
-                          class="btn btn-danger"
-                          >Delete</a
-                        >
-                        {% endif %}
-                      </div>
-                    </div>
+      <div class="card mt-4">
+        <div class="card-header">
+          <h4>Your Posts</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <div class="container row gap-3">
+              {% for post in posts %}
+              <div class="card" style="width: 18rem">
+                <img src="{{post.photo.url}}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title">{{post.user.username}}</h5>
+                  <p class="card-text">{{post.text}}</p>
+                  <div class="d-flex justify-content-between">
+                    {% if post.user == user %}
+                    <a
+                      href="{% url 'post_edit' post.id %}"
+                      class="btn btn-secondary"
+                      >Edit</a
+                    >
+                    <a
+                      href="{% url 'post_delete' post.id %}"
+                      class="btn btn-danger"
+                      >Delete</a
+                    >
+                    {% endif %}
                   </div>
-                  {% endfor %}
                 </div>
-              </ul>
+              </div>
+              {% endfor %}
             </div>
-          </div>
+          </ul>
         </div>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</div>
 
 {% endblock %}
