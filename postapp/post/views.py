@@ -88,7 +88,37 @@ def profile_view(request):
     'profile': profile,
     'posts': posts
     }
-  return render(request, 'profile.html', context)    
+  return render(request, 'profile.html', context)  
+
+
+@login_required
+def profile_form(request):
+  try:
+    profile=Profile.objects.get(user=request.user)
+  except Profile.DoesNotExist:
+    profile = None
+  if request.method == 'POST':
+    ProfileForm(request.POST, instance=profile)
+    if form.is_valid():
+      profile=form.save(commit=False) 
+      profile.user = request.user
+      profile.save()
+      return redirect('profile')  
+  else:
+    form = ProfileForm(instance=profile)
+  return render(request, 'profile_form.html', {'form': form})     
+
+   
+   
+
+
+
+
+
+
+
+
+   
 
 
    
