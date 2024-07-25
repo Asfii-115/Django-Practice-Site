@@ -98,7 +98,7 @@ def profile_form(request):
   except Profile.DoesNotExist:
     profile = None
   if request.method == 'POST':
-    ProfileForm(request.POST, instance=profile)
+    form=ProfileForm(request.POST, instance=profile)
     if form.is_valid():
       profile=form.save(commit=False) 
       profile.user = request.user

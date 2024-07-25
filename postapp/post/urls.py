@@ -8,5 +8,5 @@ urlpatterns = [
     path('create/', views.post_create, name='post_create'),
     path('register/', views.register, name='register'),
     path('profile_form/', views.profile_form, name='profile_form'),
-    path('profile_view/', views.profile_view, name='profile_view'),
+    path('profile_view/', views.profile_view, name='profile'),
 ]
