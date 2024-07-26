@@ -1,13 +1,12 @@
-{% extends "layout.html" %}
-{% block content %}
-<h1 class='text-center mt-4'>This is PostApp</h1>
-<h2 >Register Form</h2>
+{% extends "layout.html" %} {% load crispy_forms_tags %} {% block content %}
+<h1 class="text-center mt-4">This is PostApp</h1>
+<h2>Register Form</h2>
 <form method="post">
-  {% csrf_token %}
-  {{form.as_p}}
+  {% csrf_token %} {% crispy form %}
   <button class="btn btn-primary mb-3">Register</button>
 </form>
-<p>Dont Have a Account?
-<a class="text-decoration-none" href="{% url 'login' %}">Login Here</a></p>
+<p>
+  Dont Have a Account?
+  <a class="text-decoration-none" href="{% url 'login' %}">Login Here</a>
+</p>
 {% endblock %}
- 
